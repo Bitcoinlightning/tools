@@ -92,6 +92,8 @@ installWallet() {
 configureWallet() {
     echo
     echo -e "[9/${MAX}] Configuring wallet. Please wait..."
+    echo -e "rpcuser=${rpcuser}\nrpcpassword=${rpcpass}" > ~/$COINCORE/$COINCONFIG
+
     $COINDAEMON -daemon > /dev/null 2>&1
     sleep 10
 
