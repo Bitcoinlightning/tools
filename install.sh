@@ -62,7 +62,7 @@ installFirewall() {
 
 installDependencies() {
     echo
-    echo -e "[5/${MAX}] Installing dependecies. Please wait..."
+    echo -e "[5/${MAX}] Installing dependencies. Please wait..."
     sudo apt-get install -y build-essential libtool autotools-dev pkg-config libssl-dev libboost-all-dev autoconf automake -qq -y > /dev/null 2>&1
     sudo apt-get install libzmq3-dev libminiupnpc-dev libssl-dev libevent-dev -qq -y > /dev/null 2>&1
     sudo apt-get install libgmp-dev -qq -y > /dev/null 2>&1
