@@ -30,7 +30,7 @@ checkForUbuntuVersion() {
 
 updateAndUpgrade() {
     echo
-    echo "[2/${MAX}] Runing update and upgrade. Please wait..."
+    echo "[2/${MAX}] Running update and upgrade. Please wait..."
     sudo DEBIAN_FRONTEND=noninteractive apt-get update -qq -y > /dev/null 2>&1
     sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -y -qq > /dev/null 2>&1
     echo -e "${GREEN}* Done${NONE}";
