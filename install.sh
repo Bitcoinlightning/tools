@@ -65,14 +65,6 @@ installDependencies() {
     echo -e "[6/${MAX}] Installing dependecies. Please wait..."
     sudo apt-get install -y build-essential libtool autotools-dev pkg-config libssl-dev libboost-all-dev autoconf automake -qq -y > /dev/null 2>&1
     sudo apt-get install libzmq3-dev libminiupnpc-dev libssl-dev libevent-dev -qq -y > /dev/null 2>&1
-    sudo apt-get install git -qq -y > /dev/null 2>&1
-    git clone https://github.com/bitcoin-core/secp256k1 -qq -y > /dev/null 2>&1
-    cd ~/secp256k1 -qq -y > /dev/null 2>&1
-    ./autogen.sh
-    ./configure
-    make
-    ./tests
-    sudo make install
     sudo apt-get install libgmp-dev -qq -y > /dev/null 2>&1
     sudo apt-get install openssl -qq -y > /dev/null 2>&1
     sudo apt-get install software-properties-common 
