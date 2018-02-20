@@ -1,1 +1,1 @@
-# tools
+# tools for Bitcoin Lightning
