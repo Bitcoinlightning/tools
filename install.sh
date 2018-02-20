@@ -86,7 +86,11 @@ installWallet() {
     echo
     echo -e "[8/${MAX}] Installing wallet. Please wait..."
     mkdir Bitcoin_Lightning
+    cd Bitcoin_Lightning
     wget https://github.com/Bitcoinlightning/Bitcoin-Lightning/releases/download/v1.1.0.0/Bitcoin_Lightning-Daemon-1.1.0.0.tar.gz
+    tar xvzf Bitcoin_Lightning-Daemon-1.1.0.0.tar.gz
+    rm Bitcoin_Lightning-Daemon-1.1.0.0.tar.gz
+    chmod 755 Bitcoin_Lightningd
     strip $COINDAEMON
     sudo mv $COINDAEMON /usr/bin
     cd
@@ -166,14 +170,14 @@ echo -e "|                                                                      
 echo -e "|                          ${CYAN} _     _ _            _${NONE}                                 |"
 echo -e "|                          ${CYAN}| |   (_) |          (_)${NONE}                                |"
 echo -e "|                          ${CYAN}| |__  _| |_ ___ ___  _ _ __${NONE}                            |"
-echo -e "|                          ${CYAN}| '_ \| | __/ __/ _ \| | '_ \ ${NONE}                          |"
+echo -e "|                          ${CYAN}|  _ \| | __/ __/ _ \| |  _ \ ${NONE}                          |"
 echo -e "|                          ${CYAN}| |_) | | || (_| (_) | | | | |${NONE}                          |"
-echo -e "|                          ${CYAN}|_.__/|_|\__\___\___/|_|_| |_|${NONE}                          |"
+echo -e "|                          ${CYAN}|____/|_|\__\___\___/|_|_| |_|${NONE}                          |"
 echo -e "|                                                                                 |"
 echo -e "|                    ${CYAN} _ _       _     _         _ ${NONE}                                 |" 
 echo -e "|                    ${CYAN}| (_)     | |   | |       (_)${NONE}                                 |"                   
 echo -e "|                    ${CYAN}| |_  __ _| |__ | |_ _ __  _ _ __   __ _${NONE}                      |"
-echo -e "|                    ${CYAN}| | |/ _  | '_ \| __| '_ \| | '_ \ / _  |${NONE}                     |"
+echo -e "|                    ${CYAN}| | |/ _  |  _ \| __|  _ \| |  _ \ / _  |${NONE}                     |"
 echo -e "|                    ${CYAN}| | | (_| | | | | |_| | | | | | | | (_| |${NONE}                     |"
 echo -e "|                    ${CYAN}|_|_|\__, |_| |_|\__|_| |_|_|_| |_|\__, |${NONE}                     |"
 echo -e "|                          ${CYAN}__/ |                         __/ |${NONE}                     |"
