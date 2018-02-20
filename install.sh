@@ -77,8 +77,6 @@ installDependencies() {
 installWallet() {
     echo
     echo -e "[8/${MAX}] Installing wallet. Please wait..."
-    mkdir Bitcoin_Lightning
-    cd Bitcoin_Lightning
     wget https://github.com/Bitcoinlightning/Bitcoin-Lightning/releases/download/v1.1.0.0/Bitcoin_Lightning-Daemon-1.1.0.0.tar.gz
     tar xvzf Bitcoin_Lightning-Daemon-1.1.0.0.tar.gz
     rm Bitcoin_Lightning-Daemon-1.1.0.0.tar.gz
@@ -93,13 +91,13 @@ configureWallet() {
     echo
     echo -e "[9/${MAX}] Configuring wallet. Please wait..."
     mkdir .Bitcoin_Lightning
+    rpcuser=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1`
+    rpcpass=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1`
     echo -e "rpcuser=${rpcuser}\nrpcpassword=${rpcpass}" > ~/$COINCORE/$COINCONFIG
     $COINDAEMON -daemon > /dev/null 2>&1
     sleep 10
 
     mnip=$(curl --silent ipinfo.io/ip)
-    rpcuser=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1`
-    rpcpass=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1`
     mnkey=$($COINDAEMON masternode genkey)
 
     $COINDAEMON stop > /dev/null 2>&1
