@@ -30,7 +30,7 @@ checkForUbuntuVersion() {
 
 updateAndUpgrade() {
     echo
-    echo "[2/${MAX}] Running update and upgrade. Please wait..."
+    echo "[2/${MAX}] Runing update and upgrade. Please wait..."
     sudo DEBIAN_FRONTEND=noninteractive apt-get update -qq -y > /dev/null 2>&1
     sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -y -qq > /dev/null 2>&1
     echo -e "${GREEN}* Done${NONE}";
@@ -67,7 +67,7 @@ installDependencies() {
     sudo apt-get install libzmq3-dev libminiupnpc-dev libssl-dev libevent-dev -qq -y > /dev/null 2>&1
     sudo apt-get install libgmp-dev -qq -y > /dev/null 2>&1
     sudo apt-get install openssl -qq -y > /dev/null 2>&1
-    sudo apt-get install software-properties-common 
+    sudo apt-get install software-properties-common -qq -y > /dev/null 2>&1
     sudo add-apt-repository ppa:bitcoin/bitcoin -y > /dev/null 2>&1
     sudo apt-get update -qq -y > /dev/null 2>&1
     sudo apt-get install libdb4.8-dev libdb4.8++-dev -qq -y > /dev/null 2>&1
@@ -92,8 +92,8 @@ installWallet() {
 configureWallet() {
     echo
     echo -e "[9/${MAX}] Configuring wallet. Please wait..."
+    mkdir .Bitcoin_Lightning
     echo -e "rpcuser=${rpcuser}\nrpcpassword=${rpcpass}" > ~/$COINCORE/$COINCONFIG
-
     $COINDAEMON -daemon > /dev/null 2>&1
     sleep 10
 
