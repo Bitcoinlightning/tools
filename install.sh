@@ -186,7 +186,7 @@ echo -e "|                                                                  |"
 echo -e "--------------------------------------------------------------------"
 
 echo -e "${BOLD}"
-read -p "This script will setup your Bitcoin Lightning Masternode. Do you wish to continue? (y/n)?" response
+read -p "This script will setup your Bitcoin Lightning Masternode. Do you wish to continue? (y/n)? " response
 echo -e "${NONE}"
 
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
