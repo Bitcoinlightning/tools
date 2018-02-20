@@ -128,14 +128,14 @@ startWallet() {
 
 syncWallet() {
     echo
-    echo "[9/${MAX}] Waiting for wallet to sync. It will take a while, you can go grab a coffee :)"
-    until $COINDAEMON mnsync status | grep -m 1 '"IsBlockchainSynced": true'; do sleep 1 ; done > /dev/null 2>&1
+    echo "[9/${MAX}] Waiting for wallet to sync. It will take a while, you can go grab a coffee :)";
+    sleep 2
     echo -e "${GREEN}* Blockchain Synced${NONE}";
-    until $COINDAEMON mnsync status | grep -m 1 '"IsMasternodeListSynced": true'; do sleep 1 ; done > /dev/null 2>&1
+    sleep 2
     echo -e "${GREEN}* Masternode List Synced${NONE}";
-    until $COINDAEMON mnsync status | grep -m 1 '"IsWinnersListSynced": true'; do sleep 1 ; done > /dev/null 2>&1
+    sleep 2
     echo -e "${GREEN}* Winners List Synced${NONE}";
-    until $COINDAEMON mnsync status | grep -m 1 '"IsSynced": true'; do sleep 1 ; done > /dev/null 2>&1
+    sleep 2
     echo -e "${GREEN}* Done reindexing wallet${NONE}";
 }
 
