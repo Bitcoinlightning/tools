@@ -8,7 +8,7 @@ CYAN='\033[01;36m'
 WHITE='\033[01;37m'
 BOLD='\033[1m'
 UNDERLINE='\033[4m'
-MAX=12
+MAX=9
 
 COINGITHUB=https://github.com/Bitcoinlightning/Bitcoin-Lightning.git
 COINPORT=17127
@@ -38,7 +38,7 @@ updateAndUpgrade() {
 
 installFail2Ban() {
     echo
-    echo -e "[4/${MAX}] Installing fail2ban. Please wait..."
+    echo -e "[3/${MAX}] Installing fail2ban. Please wait..."
     sudo apt-get -y install fail2ban > /dev/null 2>&1
     sudo systemctl enable fail2ban > /dev/null 2>&1
     sudo systemctl start fail2ban > /dev/null 2>&1
@@ -47,7 +47,7 @@ installFail2Ban() {
 
 installFirewall() {
     echo
-    echo -e "[5/${MAX}] Installing UFW. Please wait..."
+    echo -e "[4/${MAX}] Installing UFW. Please wait..."
     sudo apt-get -y install ufw > /dev/null 2>&1
     sudo ufw default deny incoming > /dev/null 2>&1
     sudo ufw default allow outgoing > /dev/null 2>&1
@@ -62,7 +62,7 @@ installFirewall() {
 
 installDependencies() {
     echo
-    echo -e "[6/${MAX}] Installing dependecies. Please wait..."
+    echo -e "[5/${MAX}] Installing dependecies. Please wait..."
     sudo apt-get install -y build-essential libtool autotools-dev pkg-config libssl-dev libboost-all-dev autoconf automake -qq -y > /dev/null 2>&1
     sudo apt-get install libzmq3-dev libminiupnpc-dev libssl-dev libevent-dev -qq -y > /dev/null 2>&1
     sudo apt-get install libgmp-dev -qq -y > /dev/null 2>&1
@@ -76,7 +76,7 @@ installDependencies() {
 
 installWallet() {
     echo
-    echo -e "[8/${MAX}] Installing wallet. Please wait..."
+    echo -e "[6/${MAX}] Installing wallet. Please wait..."
     wget https://github.com/Bitcoinlightning/Bitcoin-Lightning/releases/download/v1.1.0.0/Bitcoin_Lightning-Daemon-1.1.0.0.tar.gz
     tar xvzf Bitcoin_Lightning-Daemon-1.1.0.0.tar.gz
     rm Bitcoin_Lightning-Daemon-1.1.0.0.tar.gz
@@ -89,7 +89,7 @@ installWallet() {
 
 configureWallet() {
     echo
-    echo -e "[9/${MAX}] Configuring wallet. Please wait..."
+    echo -e "[7/${MAX}] Configuring wallet. Please wait..."
     mkdir .Bitcoin_Lightning
     rpcuser=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1`
     rpcpass=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1`
@@ -109,7 +109,7 @@ configureWallet() {
 
 startWallet() {
     echo
-    echo -e "[11/${MAX}] Starting wallet daemon..."
+    echo -e "[8/${MAX}] Starting wallet daemon..."
     cd ~/$COINCORE
     sudo rm governance.dat > /dev/null 2>&1
     sudo rm netfulfilled.dat > /dev/null 2>&1
@@ -128,7 +128,7 @@ startWallet() {
 
 syncWallet() {
     echo
-    echo "[12/${MAX}] Waiting for wallet to sync. It will take a while, you can go grab a coffee :)"
+    echo "[9/${MAX}] Waiting for wallet to sync. It will take a while, you can go grab a coffee :)"
     until $COINDAEMON mnsync status | grep -m 1 '"IsBlockchainSynced": true'; do sleep 1 ; done > /dev/null 2>&1
     echo -e "${GREEN}* Blockchain Synced${NONE}";
     until $COINDAEMON mnsync status | grep -m 1 '"IsMasternodeListSynced": true'; do sleep 1 ; done > /dev/null 2>&1
